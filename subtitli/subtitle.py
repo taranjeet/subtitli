@@ -27,7 +27,7 @@ def download_subtitle(path):
     req = requests.get(url, headers=headers)
     if req.status_code == 200:
         with open(filename + '.srt', 'wb') as subtitle_file:
-            subtitle_file.write(req.text)
+            subtitle_file.write(req.text.encode('utf8'))
         print("Subtitle successfully saved!")
     elif req.status_code == 404:
         print('Subtitle not found!')
