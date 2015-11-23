@@ -3,6 +3,8 @@ import hashlib
 import sys
 import requests
 
+__version__ = '0.0.1'
+
 BASE_URL = 'http://api.thesubdb.com/?action=download&hash={hash}&language=en'
 
 
@@ -16,10 +18,11 @@ def get_hash(name):
         data += f.read(readsize)
     return hashlib.md5(data).hexdigest()
 
+
 def download_subtitle(path):
 
     filename, extension = os.path.splitext(path)
-    headers = {'User-Agent': 'SubDB/1.0 (subtitle-cli/0.1; http://github.com/staranjeet/subtitle-cli)'}
+    headers = {'User-Agent': 'SubDB/1.0 (subtitle-cli/0.1; http://github.com/staranjeet/subtitli)'}
     url = BASE_URL.format(hash=get_hash(path))
     req = requests.get(url, headers=headers)
     if req.status_code == 200:
@@ -28,7 +31,6 @@ def download_subtitle(path):
         print("Subtitle successfully saved!")
     elif req.status_code == 404:
         print('Subtitle not found!')
-    print get_hash(path)
 
 
 def main():
@@ -41,4 +43,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-
