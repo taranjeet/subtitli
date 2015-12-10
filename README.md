@@ -28,6 +28,11 @@ $ subtitli <movie>
 
 ```
 
+TODOS
+=====
+
+[ ] Need to look for a proper fallback.
+
 Licence
 ====
 Open sourced under [MIT License](LICENSE.txt)
